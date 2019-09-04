@@ -1,3 +1,5 @@
+import utils.*
+
 // limite_inferior_rango_db,limite_superior_rango_db,comuna,leyenda,rango_db,color,periodo
 const datosCrudos = 
 "30.0,35.0,1,35 dBA o menos,30-35,169 255 115,Diurno
@@ -168,15 +170,14 @@ const datosCrudos =
 0,90.0,15,80 dBA o más,85-90,0 38 115,Diurno
 0,95.0,15,80 dBA o más,90-95,0 38 115,Diurno"
 
-const listaDeRegistros = datosCrudos.split("\n")
+const registros = datosCrudos.split("\n")
 
-const mapper = {reg => object {
-		method name() = reg.get(0)
-		method limiteInferiorRangoDB() = reg.get(0)
-		method limiteSuperiorRangoDB() = reg.get(1)
+const crearObjeto = {reg => object {
 		method comuna() = reg.get(2)
-		method rangoDB() = reg.get(4)
+		method rangoDB() = generarRango.apply(reg.get(4))
+		method db() = mediaDeRango.apply(generarRango.apply(reg.get(4)))
 	}
 }
-const listaDeObjetos = listaDeRegistros.map { r => r.split(",") }
-const asdf = listaDeObjetos.map(mapper)
+
+const mustras = registros.map({ r => r.split(",") })
+						.map(crearObjeto)
