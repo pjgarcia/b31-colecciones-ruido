@@ -173,7 +173,7 @@ const datosCrudos =
 const registros = datosCrudos.split("\n")
 
 const crearObjeto = {reg => object {
-		method comuna() = reg.get(2)
+		method comuna() = stoi.apply(reg.get(2))
 		method rangoDB() = generarRango.apply(reg.get(4))
 		method db() = mediaDeRango.apply(generarRango.apply(reg.get(4)))
 	}
