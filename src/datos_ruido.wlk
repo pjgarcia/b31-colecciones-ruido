@@ -179,5 +179,5 @@ const crearObjeto = {reg => object {
 	}
 }
 
-const mustras = registros.map({ r => r.split(",") })
+const muestras = registros.map({ r => r.split(",") })
 						.map(crearObjeto)
