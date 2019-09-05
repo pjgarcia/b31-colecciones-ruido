@@ -31,5 +31,5 @@ const armarBarrios = { barrios =>
 		if (barrios.contains("-")) 
 			barrios.split("-").map {barrio => barrio.trim()}
 		else 
-			barrios
+			[barrios]
 }

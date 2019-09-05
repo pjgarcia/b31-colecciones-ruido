@@ -25,7 +25,12 @@ object carritoDeSuper {
 	method repasarProductos() {
 		productos.forEach {p => console.println(p)}	
 	}
-	
+	method preciosDeProductos() {
+		return productos.map({p => p.precio() })
+	}
+	method productosOrdenadosPorPrecioCreciente() {
+		return productos.sortedBy {p1, p2 => p1.precio() > p2.precio()}
+	}
 	method todosLosProductosEstanEnBuenEstado() {
 		return productos.all({p => p.vencimiento() > anioActual})
 	}
@@ -40,9 +45,6 @@ object carritoDeSuper {
 	}
 	method buscarProducto(nombre) {
 		return productos.find {p => p.nombre() == nombre}
-	}
-	method preciosDeProductos() {
-		return productos.map({p => p.precio() })
 	}
 	method costoTotalDeProductos() {
 		return productos.fold(0, {suma, p => suma + p.precio()})
